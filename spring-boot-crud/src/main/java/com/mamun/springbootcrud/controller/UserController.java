@@ -29,13 +29,6 @@ public class UserController {
         return new ModelAndView("user");
     }
 
-    @RequestMapping(value = "/user")
-    public ModelAndView indexPage(Model model) {
-        model.addAttribute("user" , new User());
-        List<User> userList = userRepository.findAll();
-        model.addAttribute("userList", userList);
-        return new ModelAndView("user");
-    }
 
     @RequestMapping(value = "/saveUser", method = RequestMethod.POST)
     public String saveUser(User user, BindingResult bindingResult,
