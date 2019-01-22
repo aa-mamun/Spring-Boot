@@ -22,22 +22,28 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
-    @RequestMapping(value = "/")
-    public ModelAndView index(Model model) {
-        model.addAttribute("user" , new User());
 
+    @RequestMapping(value = "/test")
+    public void test() {
+        /**
+         * Test JPQL method
+         */
+        User user = userRepository.findUserByNameUsingJPQL("Snow");
+
+        /**
+         * Test Procedure
+         */
         List<User> users = userRepository.findAllByUsersAddress("Green road");
-        model.addAttribute("userList", users);
-        return new ModelAndView("user");
     }
 
-    @RequestMapping(value = "/user")
-    public ModelAndView indexPage(Model model) {
-        model.addAttribute("user" , new User());
+    @RequestMapping(value = "/")
+    public ModelAndView index(Model model) {
+        model.addAttribute("user", new User());
         List<User> userList = userRepository.findAll();
         model.addAttribute("userList", userList);
         return new ModelAndView("user");
     }
+
 
     @RequestMapping(value = "/saveUser", method = RequestMethod.POST)
     public String saveUser(User user, BindingResult bindingResult,
@@ -62,9 +68,9 @@ public class UserController {
     }
 
     @RequestMapping(value = "/viewUser")
-    public ModelAndView userModify(@ModelAttribute("userId")User user, Model model){
+    public ModelAndView userModify(@ModelAttribute("userId") User user, Model model) {
         User userDb = userRepository.findByUserId(user.getUserId());
-        model.addAttribute("user" , userDb);
+        model.addAttribute("user", userDb);
         List<User> userList = userRepository.findAll();
         model.addAttribute("userList", userList);
         return new ModelAndView("user");
