@@ -4,6 +4,10 @@ package com.mamun.springdata.controller;
 import com.mamun.springdata.domain.User;
 import com.mamun.springdata.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -34,6 +38,12 @@ public class UserController {
          * Test Procedure
          */
         List<User> users = userRepository.findAllByUsersAddress("Green road");
+
+
+        /**
+         * Test pagination and sorting
+         * */
+        Page<User>  pagination = userRepository.findAllByAgeGreaterThan(5, PageRequest.of(0,3, Sort.by("age").descending()));
     }
 
     @RequestMapping(value = "/")
@@ -64,7 +74,7 @@ public class UserController {
             userRepository.save(user);
         }
         model.clear();
-        return "redirect:/user";
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/viewUser")

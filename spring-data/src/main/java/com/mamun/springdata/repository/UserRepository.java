@@ -1,6 +1,8 @@
 package com.mamun.springdata.repository;
 
 import com.mamun.springdata.domain.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -40,4 +42,10 @@ public interface UserRepository extends JpaRepository<User,Long> {
      * */
     /*@Query(value = "CALL findAllByUsersAddress(:address)", nativeQuery = true)
     List<User> findAllByUsersAddress(String address);*/
+
+    /**
+     * Pagination
+     * */
+    Page<User> findAllByAgeGreaterThan(int age, Pageable pageable);
+
 }

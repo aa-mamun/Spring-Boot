@@ -1,7 +1,11 @@
 package com.mamun.springdata.domain;
 
-import javax.persistence.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import javax.persistence.*;
+import java.util.Date;
 
 
 @Entity
@@ -21,6 +25,10 @@ public class User {
 
 	@Column(name = "age")
 	private int age;
+
+	@Transient
+	private String transientTest;
+
 
 	public Long getUserId() {
 		return userId;
@@ -52,5 +60,14 @@ public class User {
 
 	public void setAge(int age) {
 		this.age = age;
+	}
+
+
+	public String getTransientTest() {
+		return transientTest;
+	}
+
+	public void setTransientTest(String transientTest) {
+		this.transientTest = transientTest;
 	}
 }
