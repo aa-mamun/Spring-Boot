@@ -8,6 +8,12 @@ import javax.persistence.*;
 import java.util.Date;
 
 
+@NamedStoredProcedureQueries({
+		@NamedStoredProcedureQuery(name = "findAllByUsersAddress",
+				procedureName = "findAllByUsersAddress",
+				resultClasses = User.class)
+})
+
 @Entity
 @Table(name = "user")
 public class User {

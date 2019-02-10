@@ -5,13 +5,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
 public interface UserRepository extends JpaRepository<User,Long> {
-    User findByUserId(Long id);
 
+    User findByUserId(Long id);
 
     /**
      * Get a user info using JPQL query
@@ -23,19 +24,19 @@ public interface UserRepository extends JpaRepository<User,Long> {
      * Get users info using native query
      * */
     @Query(
-            value = "SELECT * FROM USER u   WHERE u.age = :age ",
+            value = "SELECT * FROM USER u   WHERE u.age = :age",
             nativeQuery = true)
     List<User> findAllByAgeGreaterThan(@Param("age") int age);
 
     /**
      * This method mapped to mysql procedure named "findAllByUsersAddress"
      * */
-
     /**
      * Using parameter index
      * */
     @Query(value = "CALL findAllByUsersAddress(?1)", nativeQuery = true)
     List<User> findAllByUsersAddress(String address);
+
 
     /**
      * Using parameter name

@@ -6,7 +6,6 @@ import com.mamun.springdata.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,18 +25,12 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
-
     @RequestMapping(value = "/test")
     public void test() {
         /**
          * Test JPQL method
          */
         User user = userRepository.findUserByNameUsingJPQL("Snow");
-
-        /**
-         * Test Procedure
-         */
-        List<User> users = userRepository.findAllByUsersAddress("Green road");
 
 
         /**
