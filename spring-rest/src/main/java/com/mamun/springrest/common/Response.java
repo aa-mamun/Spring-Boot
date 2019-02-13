@@ -1,15 +1,15 @@
 package com.mamun.springrest.common;
 
 public class Response {
-    private String status;
+    private Status status;
     private String responseCode;
     private String responseMessage;
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
@@ -29,9 +29,12 @@ public class Response {
         this.responseMessage = responseMessage;
     }
 
-    public Response(String status, String responseCode, String responseMessage) {
+    public Response(Status status, String responseCode, String responseMessage) {
         this.status = status;
         this.responseCode = responseCode;
         this.responseMessage = responseMessage;
+    }
+
+    public Response() {
     }
 }

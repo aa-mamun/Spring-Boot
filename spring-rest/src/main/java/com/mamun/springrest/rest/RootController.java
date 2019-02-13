@@ -1,7 +1,7 @@
 package com.mamun.springrest.rest;
 
 import com.mamun.springrest.domain.request.EmpRequest;
-import com.mamun.springrest.domain.Employee;
+import com.mamun.springrest.domain.entity.Employee;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -43,6 +43,8 @@ public class RootController {
         else
             return new Employee(0,"","");
     }
+
+
 
 
 }
