@@ -3,7 +3,7 @@ package com.mamun.springrest.rest;
 import com.mamun.springrest.common.Response;
 import com.mamun.springrest.common.Status;
 import com.mamun.springrest.domain.entity.Employee;
-import com.mamun.springrest.domain.request.EmployeeSaveResquest;
+import com.mamun.springrest.domain.request.EmployeeSaveRequest;
 import com.mamun.springrest.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,7 +23,7 @@ public class EmployeeController {
     EmployeeRepository employeeRepository;
 
     @PostMapping(value = "/save")
-    public Response saveEmployee(@RequestBody EmployeeSaveResquest request){
+    public Response saveEmployee(@RequestBody EmployeeSaveRequest request){
         Response response = new Response();
 
         Employee employee = new Employee();

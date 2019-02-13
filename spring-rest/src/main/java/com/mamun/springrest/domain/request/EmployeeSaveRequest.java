@@ -1,6 +1,6 @@
 package com.mamun.springrest.domain.request;
 
-public class EmployeeSaveResquest {
+public class EmployeeSaveRequest {
 
     private String name;
     private String address;
@@ -18,6 +18,11 @@ public class EmployeeSaveResquest {
     }
 
     public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public EmployeeSaveRequest(String name, String address) {
+        this.name = name;
         this.address = address;
     }
 }
