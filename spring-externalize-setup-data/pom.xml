@@ -9,16 +9,20 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.mamun</groupId>
-    <artifactId>spring-rest</artifactId>
+    <artifactId>spring-externalize-setup-data</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-rest</name>
-    <description>Demo project for Spring Rest</description>
+    <name>spring-externalize-setup-data</name>
+    <description>Demo project for externalize setup data vai CSV</description>
 
     <properties>
         <java.version>1.8</java.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -35,15 +39,10 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- To read data from a CSV file -->
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-csv</artifactId>
         </dependency>
 
     </dependencies>

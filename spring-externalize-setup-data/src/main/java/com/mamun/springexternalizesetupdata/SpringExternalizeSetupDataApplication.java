@@ -1,17 +1,14 @@
-package com.mamun.springrest;
+package com.mamun.springexternalizesetupdata;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-
-
 @SpringBootApplication
-public class SpringRestApplication {
+public class SpringExternalizeSetupDataApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringRestApplication.class, args);
+        SpringApplication.run(SpringExternalizeSetupDataApplication.class, args);
     }
-
 
 }
 
