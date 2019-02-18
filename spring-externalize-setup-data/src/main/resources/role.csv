@@ -1,4 +1,0 @@
-id,role,note
-1,ROLE_ADMIN,Specifies admin access
-2,ROLE_USER,normal
-3,ROLE_OFFICER,normal
