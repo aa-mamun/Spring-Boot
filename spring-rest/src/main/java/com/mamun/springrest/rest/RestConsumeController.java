@@ -21,10 +21,6 @@ public class RestConsumeController {
 
         EmployeeSaveResponse response = restTemplate.postForObject(PATH_EMPLOYEE_SAVE, request, EmployeeSaveResponse.class);
 
-        System.out.println("Result "
-                + "\n status : " + response.getStatus()
-                + "\n code : " + response.getResponseCode()
-                + "\n message : " + response.getResponseMessage());
 
         return "SUCCESS";
     }
