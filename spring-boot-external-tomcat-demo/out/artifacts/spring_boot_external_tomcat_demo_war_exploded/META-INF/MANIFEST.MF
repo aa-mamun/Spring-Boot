@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: spring-boot-external-tomcat-demo
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: MAMUN
+Implementation-Vendor-Id: com.mamun
+Created-By: IntelliJ IDEA
+Build-Jdk: 1.8
+Main-Class: com.mamun.springbootexternaltomcatdemo.SpringBootExternalT
+ omcatDemoApplication
+
