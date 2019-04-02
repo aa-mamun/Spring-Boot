@@ -12,6 +12,7 @@ The following steps illustrate how to configure spring boot app to run in extern
             </dependency>
 
 * Change packaging and define starter class
+
                 <properties>
                       <packaging>war</packaging>
                       <start-class>com.mamun.springbootexternaltomcatdemo.SpringBootExternalTomcatDemoApplication</start-class>
