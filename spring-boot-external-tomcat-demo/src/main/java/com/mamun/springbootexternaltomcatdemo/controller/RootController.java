@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class RootController {
 
     @RequestMapping(value = "/")
-    public String getRootPage(){
+    public String getRootPage() {
 
         return "root page";
     }

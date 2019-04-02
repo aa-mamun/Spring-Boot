@@ -4,6 +4,7 @@
 The following steps illustrate how to configure spring boot app to run in external tomcat
 
 * Add bellow dependency to pom.xml
+
 	<dependency>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-tomcat</artifactId>
