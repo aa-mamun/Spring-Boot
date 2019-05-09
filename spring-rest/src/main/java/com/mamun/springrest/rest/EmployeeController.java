@@ -6,10 +6,7 @@ import com.mamun.springrest.domain.entity.Employee;
 import com.mamun.springrest.domain.request.EmployeeSaveRequest;
 import com.mamun.springrest.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/employee")
@@ -44,5 +41,11 @@ public class EmployeeController {
 
 
         return response;
+    }
+
+    @GetMapping("/get-details")
+    public String getEmployeeDetails(@RequestParam String name,@RequestParam String address) {
+        String details = "Name : " + name +", Address : "+address;
+        return details;
     }
 }
