@@ -6,8 +6,11 @@ import com.me.springrestservicedemo.helper.EmployeeResourceAssembler;
 import com.me.springrestservicedemo.repository.EmployeeRepository;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -63,10 +66,29 @@ public class EmployeeController {
        return new Resources<>(employees,
                linkTo(methodOn(EmployeeController.class).all()).withSelfRel());
    }
-    @PostMapping("/employees")
+   /* @PostMapping("/employees")
     Employee newEmployee(@RequestBody Employee newEmployee) {
-        return repository.save(newEmployee);
-    }
+
+       return repository.save(newEmployee);
+    }*/
+   /**
+    * Hypermedia Link added here
+    *
+    * Location header populated with http://localhost:8080/employees/3.
+    * A hypermedia powered client could opt to "surf" to this
+    * new resource and proceed to interact with it.
+    *
+    * By grabbing the resource we can fetch it’s
+    * "self" link via the getId() method call.
+    * */
+   @PostMapping("/employees")
+   ResponseEntity<?> newEmployee(@RequestBody Employee newEmployee) throws URISyntaxException {
+
+       Resource<Employee> resource = assembler.toResource(repository.save(newEmployee));
+       return ResponseEntity
+               .created(new URI(resource.getId().expand().getHref()))
+               .body(resource);
+   }
 
     // Single item
 
@@ -117,8 +139,16 @@ public class EmployeeController {
                 });
     }
 
-    @DeleteMapping("/employees/{id}")
+    /*@DeleteMapping("/employees/{id}")
     void deleteEmployee(@PathVariable Long id) {
         repository.deleteById(id);
+    }*/
+
+    @DeleteMapping("/employees/{id}")
+    ResponseEntity<?> deleteEmployee(@PathVariable Long id) {
+
+        repository.deleteById(id);
+
+        return ResponseEntity.noContent().build();
     }
 }
