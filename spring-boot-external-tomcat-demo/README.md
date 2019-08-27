@@ -5,11 +5,11 @@ The following steps illustrate how to configure spring boot app to run in extern
 
 * Add bellow dependency to pom.xml
 
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-tomcat</artifactId>
-                <scope>provided</scope>
-            </dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-tomcat</artifactId>
+				<scope>provided</scope>
+			</dependency>
 
 * Change packaging and define starter class
 
