@@ -19,6 +19,7 @@ The following steps illustrate how to configure spring boot app to run in extern
             </properties>
 	
 * Modify initializer class as bellow
+
             @SpringBootApplication
             public class SpringBootExternalTomcatDemoApplication extends SpringBootServletInitializer {
     
