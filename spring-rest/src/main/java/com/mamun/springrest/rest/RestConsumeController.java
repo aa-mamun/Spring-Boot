@@ -63,5 +63,62 @@ public class RestConsumeController {
 
         return responseEntity.getBody();
     }
+	
+	
+	//When API response is 
+/*
+
+[
+  {
+    "id": 1,
+    "name": "XYZ",
+    "address": "XYZZ"
+  }
+]
+*/
+//Solution 1
+	public List<Employee> getAllByName(String name) {
+        List<Employee> empList = new ArrayList();
+        RestTemplate restTemplate = new RestTemplate();
+
+        try {
+			empList = Arrays.asList( restTemplate.getForObject(url+"?name="+ name, Employee[].class));          
+        } catch (Exception ex) {
+            logger.error("Error Occured : " + ex, ex);
+        }
+        return empList;
+    }
+//Solution 2
+    public List<Employee> getAllByName(String name) {
+        List<Employee> empList = new ArrayList();
+        RestTemplate restTemplate = new RestTemplate();
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.add("Content-Type", "application/json");
+        UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(queueMemberUrl)
+                .queryParam("name", name);
+
+        HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
+
+        try {
+
+            ResponseEntity<QueueMemberDto[]> responseEntity = restTemplate.exchange(
+                    uriBuilder.toUriString(),
+                    HttpMethod.GET,
+                    requestEntity,
+                    QueueMemberDto[].class
+            );
+            empList = Arrays.asList(responseEntity.getBody());
+         
+		     
+            //empList = Arrays.asList( restTemplate.getForObject(url+"?name="+ name, Employee[].class));
+            
+
+        } catch (Exception ex) {
+            logger.error("Error Occured : " + ex, ex);
+        }
+        return empList;
+    }
+	
 
 }
