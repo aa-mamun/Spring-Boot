@@ -121,4 +121,59 @@ public class RestConsumeController {
     }
 	
 
+   /** API end point that accept RequestParam*/
+    @PostMapping("test-post")
+    public ResponseEntity<BaseResponse> testPost( @RequestParam("year") int year,@RequestParam("month") int month) {
+            return ResponseEntity.ok(new BaseResponse(MessageType.SUCCESS, "TEACHER ID "+year));
+    }
+
+	/** To consume POST api that accept RequestParam */
+    @GetMapping("consume")
+    public ResponseEntity<BaseResponse> consume() {
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders httpHeaders = new HttpHeaders();
+        BaseResponse response = new BaseResponse();
+        try {
+            String urlParameters = "year="+ 1+"&month="+2;
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Content-type", "application/x-www-form-urlencoded");
+            headers.add("charset", "utf-8");
+
+            httpHeaders.add("Content-type", "application/json");
+
+            HttpEntity<String> entity = new HttpEntity<>(urlParameters, headers);
+            ResponseEntity<BaseResponse> responseEntity = restTemplate.exchange("http://localhost:8080/test-post", HttpMethod.POST,entity, BaseResponse.class);
+            response=responseEntity.getBody();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+            return ResponseEntity.ok(new BaseResponse(MessageType.SUCCESS, "Consume called",response));
+    }
+	
+	/** To consume POST api that accept form-data */
+	  public OkWalletTokenResponse getToke() {
+
+        OkWalletTokenResponse response = new OkWalletTokenResponse();
+        try {
+            
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Content-type", "application/x-www-form-urlencoded");
+
+            MultiValueMap<String, String> map= new LinkedMultiValueMap<>();
+            map.add("api_user", user);
+            map.add("api_pass", pass);
+            map.add("merchantID", merchantID);
+
+            HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, headers);
+
+            ResponseEntity<OkWalletTokenResponse> responseEntity = disableSSL.getRestTemplate().postForEntity( tokenUrl, request , OkWalletTokenResponse.class );
+            response=responseEntity.getBody();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return response;
+    }
 }
